@@ -160,4 +160,10 @@ class BannerController extends Controller
 
         return response()->json(['success'=>'Banner status changed successfully.']);
     }
+
+    public function markAsRead()
+    {
+        auth()->user()->unreadNotifications->markAsRead();
+        return redirect()->back();
+    }
 }

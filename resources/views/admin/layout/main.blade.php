@@ -84,20 +84,30 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
                         <i class="icon-copy dw dw-notification"></i>
-                        <span class="badge notification-active"></span>
+                        @if (Auth::user()->unreadNotifications->count() > 0)
+                            <span class="badge notification-active"></span>
+                        @endif
                     </a>
+
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="notification-list mx-h-350 customscroll">
                             <ul>
-                                @foreach (auth()->user()->unreadNotifications as $notification)
-                                <li>
-                                    <a href="{{ $notification->data['banner_link'] }}">
-                                        <img src="/storage/banner/{{ $notification->data['image'] }}" alt="">
-										{{-- <img src="{{ asset('admin_assets/vendors/images/img.jpg') }}" alt=""> --}}
-										<h3>{{ $notification->data['title'] }}</h3>
-									</a>
-                                </li>
-                                @endforeach
+                                @if (Auth::user()->unreadNotifications->count() > 0)
+                                    @foreach (auth()->user()->unreadNotifications as $notification)
+                                        <li>
+                                            <a href="{{ route('admin.banner.mark') }}">
+                                                <img src="/storage/banner/{{ $notification->data['image'] }}" alt="">
+                                                {{-- <img src="{{ asset('admin_assets/vendors/images/img.jpg') }}" alt=""> --}}
+                                                <h3>{{ $notification->data['title'] }}</h3>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <li>
+                                        <h6>No new notifications</h6>
+                                    </li>
+                                @endif
+
 
                             </ul>
                         </div>

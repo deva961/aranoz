@@ -50,6 +50,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         //banner controller
         Route::resource('banner', BannerController::class);
         Route::get('changeBannerStatus', [BannerController::class,'changeBannerStatus']);
+        Route::get('/markAsRead', [BannerController::class, 'markAsRead'])->name('banner.mark');
 
         //category controller
         Route::resource('categories', CategoryController::class);
