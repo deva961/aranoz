@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
 
 //user controllers
 use App\Http\Controllers\HomeController;
@@ -48,11 +49,14 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         //banner controller
         Route::resource('banner', BannerController::class);
-        Route::get('changeStatus', [BannerController::class,'changeBannerStatus']);
-        // Route::get('changeStatus', 'UserController@ChangeUserStatus');
+        Route::get('changeBannerStatus', [BannerController::class,'changeBannerStatus']);
 
         //category controller
         Route::resource('categories', CategoryController::class);
+
+        //sub category controller
+        Route::resource('sub_categories', SubCategoryController::class);
+
     });
 
 });

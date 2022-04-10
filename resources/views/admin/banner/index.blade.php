@@ -120,7 +120,7 @@
               $.ajax({
                   type: "GET",
                   dataType: "json",
-                  url: '/admin/changeStatus',
+                  url: '/admin/changeBannerStatus',
                   data: {'status': status, 'user_id': user_id},
                   success: function(data){
                       if(data.success) {

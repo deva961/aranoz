@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="left_sidebar_area">
-                        <aside class="left_widgets p_filter_widgets">
+                        {{-- <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 <h3>Browse Categories</h3>
                             </div>
@@ -41,52 +41,26 @@
                                     @foreach ($categories as $category)
                                         <li>
                                             <a href="javascript:void(0);">{{ $category->name }}</a>
-                                            {{-- <span>(250)</span> --}}
                                         </li>
                                     @endforeach
                                 </ul>
                             </div>
-                        </aside>
+                        </aside> --}}
 
                         <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
-                                <h3>Product filters</h3>
+                                <h3>Categories</h3>
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    <li>
-                                        <a href="#">Apple</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Asus</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Gionee</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Micromax</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Samsung</a>
-                                    </li>
+                                    @foreach ($sub_categories as $sub_category)
+                                        <li>
+                                            <a href="javascript:void(0)">{{ $sub_category->name }}</a>
+                                            {{-- <span>(250)</span> --}}
+                                        </li>
+                                    @endforeach
                                 </ul>
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">Apple</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Asus</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Gionee</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Micromax</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Samsung</a>
-                                    </li>
-                                </ul>
+
                             </div>
                         </aside>
 

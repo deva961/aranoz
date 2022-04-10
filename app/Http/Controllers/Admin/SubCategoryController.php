@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Http\Controllers\Controller;
 use App\Models\SubCatgeory;
+use App\Models\Category;
+use Illuminate\Http\Request;
 
-class ShopPageController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,8 @@ class ShopPageController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
         $sub_categories = SubCatgeory::all();
-        return view('user.category.shop_category', compact('categories', 'sub_categories'));
+        return view('admin.sub_categories.index', compact('sub_categories'));
     }
 
     /**
@@ -27,7 +27,8 @@ class ShopPageController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.sub_categories.create', compact('categories'));
     }
 
     /**
@@ -38,7 +39,16 @@ class ShopPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required'
+        ]);
+        $sub_categories = new SubCatgeory();
+        $sub_categories->category_id = $request->category;
+        $sub_categories->name = $request->name;
+        if ($sub_categories->save()) {
+            return redirect()->back()->with('success', 'Sub Category created successfully');
+        }
     }
 
     /**
@@ -58,9 +68,10 @@ class ShopPageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SubCatgeory $sub_category)
     {
-        //
+        $categories = Category::all();
+        return view('admin.sub_categories.edit',compact('categories', 'sub_category'));
     }
 
     /**

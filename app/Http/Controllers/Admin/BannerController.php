@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
@@ -63,6 +64,8 @@ class BannerController extends Controller
             $data->image = $imageName;
         }
         if($data->save()){
+            $user = Admin::find(1);
+            $user->notify(new \App\Notifications\BannerNotification($data));
             return redirect()->back()->with('success', 'Banner has been created');
         }else{
             return redirect()->back()->with('error', 'Something went wrong!');
